@@ -8,12 +8,12 @@ import java.util.Arrays;
 public enum WeatherCondition {
 
     THUNDERSTORM("Thunderstorm", Genre.ADVENTURE),
-    DRIZZLE("Drizzle", Genre.ADVENTURE),
-    RAIN("Rain", Genre.ADVENTURE),
-    SNOW("Snow", Genre.ADVENTURE),
-    ATMOSPHERE("Atmosphere", Genre.ADVENTURE),
-    CLEAR("Clear", Genre.ADVENTURE),
-    CLOUDS("Clouds", Genre.ACTION);
+    DRIZZLE("Drizzle", Genre.THRILLER),
+    RAIN("Rain", Genre.DOCUMENTARY),
+    SNOW("Snow", Genre.ROMANCE),
+    ATMOSPHERE("Atmosphere", Genre.DOCUMENTARY),
+    CLEAR("Clear", Genre.ACTION),
+    CLOUDS("Clouds", Genre.COMEDY);
 
     private final String conditionName;
     private final Genre genre;

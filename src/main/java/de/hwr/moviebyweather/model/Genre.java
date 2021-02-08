@@ -7,9 +7,12 @@ public enum Genre {
 
     ACTION("Action", 28),
     ADVENTURE("Adventure", 12),
-    ANIMATION("Animation", 16),
     COMEDY("Comedy", 35),
-    CRIME("Crime", 80);
+    CRIME("Crime", 80),
+    DOCUMENTARY("Documentary", 99),
+    ROMANCE("Romance", 10749),
+    THRILLER("Thriller", 53);
+
 
 
 

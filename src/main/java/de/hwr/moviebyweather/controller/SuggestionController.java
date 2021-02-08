@@ -81,8 +81,8 @@ public class SuggestionController {
                 MoviePage.class,
                 urlParametersMoviePage);
 
-        int randomPage = new Random().nextInt(Math.round(responseEntityMovie.getBody().getTotalPages() / 5)) + 1;
-        int randomEntry =  new Random().nextInt(responseEntityMovie.getBody().getMovies().size());
+        int randomPage = new Random().nextInt(Math.round(responseEntityMovie.getBody().getTotalPages() / 10)) + 1;
+        int randomEntry =  new Random().nextInt(responseEntityMovie.getBody().getMovies().size() - 1);
 
         Map<String, ?> urlParametersRandomMoviePage = Map.of(
                 "apiKey", THE_MOVIE_DB_API_KEY,
