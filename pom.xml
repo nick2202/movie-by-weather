@@ -13,6 +13,7 @@
     <version>0.0.2-SNAPSHOT</version>
     <name>movie-by-weather</name>
     <description>Movie suggestions by weather</description>
+    <url>http://maven.apache.org</url>
     <properties>
         <java.version>11</java.version>
     </properties>
