@@ -1,0 +1,48 @@
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 30pt;
+}
+
+#page-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    alignment: center;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.column {
+    text-align: center;
+    float: left;
+    width: 50%;
+}
+td {
+    vertical-align: center;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#overview {
+    font-style: oblique;
+    vertical-align: center;
+}
+
+#image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+#weather-condition, #city-name {
+    font-style: oblique;
+}

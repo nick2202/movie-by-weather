@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Your movie suggestion</title>
+    <link href="css/result.css" rel="stylesheet"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<div id="page-wrap">
+    <h1> Movie suggestion for <span th:text="${weatherConditionLong}" id="weather-condition"/> in <span
+            th:text="${cityName}" id="city-name"/>:</h1>
+    <h2 th:text="${title}"/>
+    <img th:src="@{${'https://image.tmdb.org/t/p/w500' + posterPath}}" id="image">
+    <p th:text="${overview}" id="overview"/>
+    <div class="row">
+        <div class="column">
+            <table>
+                <tr>
+                    <td style="font-weight: bold">Original Title:</td>
+                    <td th:text="${originalTitle}">
+                </tr>
+            </table>
+        </div>
+        <div class="column">
+            <table>
+                <tr>
+                    <td style="font-weight: bold">Release Date:</td>
+                    <td th:text="${releaseDate}">
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p></p>
+    <a href="/suggestion">Enter a different city</a>
+</div>
+</body>
+</html>
