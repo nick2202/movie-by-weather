@@ -13,10 +13,6 @@ public enum Genre {
     ROMANCE("Romance", 10749),
     THRILLER("Thriller", 53);
 
-
-
-
-
     private final String name;
     private final Integer id;
 

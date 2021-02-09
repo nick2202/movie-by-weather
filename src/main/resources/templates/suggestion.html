@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>City form</title>
+    <title>Enter your city to get a movie suggestion based on the current weather</title>
     <link href="css/suggestion.css" rel="stylesheet"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div id="page-wrap">
-    <h1>Get a movie suggestion based <br> on the current weather!</h1>
+    <h1>Enter your city to get a movie suggestion based on the current weather</h1>
     <form action="#" th:action="@{/suggestion}" th:object="${city}" method="post">
         <p>Zip Code: <input type="number" th:field="*{zipCode}"/></p>
         <p>Country Code: <select th:field="*{countryCode}" id="country-code" name="country-code">
