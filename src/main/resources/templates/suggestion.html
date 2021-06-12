@@ -11,7 +11,7 @@
     <h1>Enter your city to get a movie suggestion based on the current weather</h1>
     <form action="#" th:action="@{/suggestion}" th:object="${city}" method="post">
         <p>Zip Code: <input type="number" th:field="*{zipCode}"/></p>
-        <p>Country Code: <select th:field="*{countryCode}" id="country-code" name="country-code">
+        <p>Country: <select th:field="*{countryCode}" id="country-code" name="country-code">
             <option value="DE">Germany</option>
             <option value="US">USA</option>
             <option value="AF">Afghanistan</option>

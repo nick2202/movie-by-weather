@@ -15,4 +15,5 @@ public class HomeController {
     public String redirectFromIndex() {
         return "redirect:/suggestion";
     }
+
 }

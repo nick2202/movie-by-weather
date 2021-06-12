@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.hwr.moviebyweather.model.*;
 import de.hwr.moviebyweather.util.FieldMapper;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 
@@ -23,8 +27,7 @@ import java.util.Random;
 @RequestMapping("/suggestion")
 public class SuggestionController {
 
-    private static final String OPEN_WEATHER_MAP_API_KEY = "f9edc2ddcd74a5a71a6e0964a6cb57d9";
-    private static final String THE_MOVIE_DB_API_KEY = "465f56c3eecbd62b82894c714b54b7b8";
+    Resource resource = new ClassPathResource("api.properties");
 
     @GetMapping
     public String greetingForm(Model model) {
@@ -40,10 +43,19 @@ public class SuggestionController {
         model.addAttribute("countryCode", city.getCountryCode());
 
         final String urlWeather = "https://api.openweathermap.org/data/2.5/weather/?zip={zip},{code}&appid={apiKey}";
-        Map<String, ?> urlParametersWeather = Map.of(
-                "zip", city.getZipCode(),
-                "code", city.getCountryCode(),
-                "apiKey", OPEN_WEATHER_MAP_API_KEY);
+        Map<String, ?> urlParametersWeather = null;
+        String apiKeyWeather = null;
+        try {
+            apiKeyWeather = PropertiesLoaderUtils.loadProperties(resource).getProperty("OPEN_WEATHER_MAP_API_KEY");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            urlParametersWeather = Map.of(
+                    "zip", city.getZipCode(),
+                    "code", city.getCountryCode(),
+                    "apiKey", apiKeyWeather);
+
+
 
         RestTemplate rest = new RestTemplate();
         final ObjectMapper mapper = new ObjectMapper();
@@ -69,8 +81,15 @@ public class SuggestionController {
         model.addAttribute("cityName", city.getName());
 
         final String urlMovie = "https://api.themoviedb.org/3/discover/movie?api_key={apiKey}&with_genres={genre}&page={pageNo}&include_adult=false&sort_by=popularity.desc";
+
+        String apiKeyMovies = null;
+        try {
+            apiKeyMovies = PropertiesLoaderUtils.loadProperties(resource).getProperty("THE_MOVIE_DB_API_KEY");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Map<String, ?> urlParametersMoviePage = Map.of(
-                "apiKey", THE_MOVIE_DB_API_KEY,
+                "apiKey", apiKeyMovies,
                 "genre", WeatherCondition.getGenreIdByConditionName(weather.getWeatherConditionShort()),
                 "pageNo", 1);
 
@@ -82,10 +101,10 @@ public class SuggestionController {
                 urlParametersMoviePage);
 
         int randomPage = new Random().nextInt(Math.round(responseEntityMovie.getBody().getTotalPages() / 10)) + 1;
-        int randomEntry =  new Random().nextInt(responseEntityMovie.getBody().getMovies().size() - 1);
+        int randomEntry = new Random().nextInt(responseEntityMovie.getBody().getMovies().size() - 1);
 
         Map<String, ?> urlParametersRandomMoviePage = Map.of(
-                "apiKey", THE_MOVIE_DB_API_KEY,
+                "apiKey", apiKeyMovies,
                 "genre", WeatherCondition.getGenreIdByConditionName(weather.getWeatherConditionShort()),
                 "pageNo", randomPage);
 
