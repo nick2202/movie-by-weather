@@ -56,7 +56,6 @@ public class SuggestionController {
                     "apiKey", apiKeyWeather);
 
 
-
         RestTemplate rest = new RestTemplate();
         final ObjectMapper mapper = new ObjectMapper();
         ResponseEntity<String> responseEntityWeather = rest.exchange(
@@ -119,5 +118,4 @@ public class SuggestionController {
 
         return "result";
     }
-
 }
